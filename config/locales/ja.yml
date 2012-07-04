@@ -1,0 +1,70 @@
+ja:
+
+  label_booty_bay: 書籍管理
+
+  label_library: 書庫
+  label_book_new: 追加
+  label_book_edit: 更新
+
+  label_device_room: 機器
+  label_device_new: 追加
+  label_device_edit: 更新
+
+  label_holder_change_histories: 貸出履歴 < {{value}} >
+  label_holder_change_count: {{age}}　からの貸出回数 {{count}}
+  label_review: レビュー
+  label_add_review: レビューを書く
+  label_nobody: 未貸出
+  label_statement: メール送信
+
+  field_book_id: 書籍番号
+  field_book_title: タイトル
+  field_original_title: 原書
+  field_book_author: 著者
+  field_translator: 翻訳者
+  field_publisher: 出版社
+  field_published_on: 出版日
+  field_isbn: ISBN
+  field_pages: ページ数
+  field_content: 概要
+
+  field_device_id: 機器番号
+  field_device_name: 名称
+  field_device_model: モデル
+  field_device_vendor: 販売元
+  field_manufactured_on: 販売日
+
+  field_value: 価格
+  field_intro_url: 紹介ページ
+  field_holder: 貸出先
+  field_updater: 更新者
+  field_reviews_count: レビュー数
+  field_holder_change_histories_count: 貸出回数
+  field_got_time: Got time
+
+  text_statement_count: メール送信数
+  text_statement_receiver: 送信情報詳細 {{name}}
+  text_statement_submit: 送信
+  text_send_successful: メール送信完了
+  text_title_statement: 以下の内容で送信します。
+  text_last_holder: 最終貸出先
+  text_current_holder: 貸出先
+  text_holder_change_notice: 貸出先が変更されました。詳細は下記を参照してください。
+  text_book_created_subject: 書籍貸出通知
+  text_device_created_subject: 機器貸出通知
+  text_book_holder_change_subject: 書籍貸出先変更通知 <{{name}}>
+  text_device_holder_change_subject: 機器貸出先変更通知 <{{name}}>
+  text_book_created: 書籍を作成しました。詳細は下記を参照してください。
+  text_device_created: 機器を作成しました。詳細は下記を参照してください。
+
+  text_statement_subject: Holding statement
+  text_send_hello: こんにちは
+  text_send_books: 書籍
+  text_send_datetime: Got on
+  text_send_devices: 機器
+  text_statement_hello: Here is the detail as follow
+  
+  permission_view_treasures: View treasures
+  permission_manage_treasures: Manage treasures
+
+  project_module_ezlibrarian: 蔵書管理
