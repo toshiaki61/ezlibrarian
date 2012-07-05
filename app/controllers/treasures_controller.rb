@@ -152,7 +152,7 @@ class TreasuresController < ApplicationController
   end
   private
   def find_project
-    @project = Project.find(params[:project_id])
+    @project = Project.find(1)
   rescue ActiveRecord::RecordNotFound
     render_404
   end
