@@ -1,8 +1,10 @@
-=== ezLibrarian plugin 0.1.5
+=== ezLibrarian plugin 0.2.0
+
+!!!! Currently it's only possible to view the books, add, update, delete is not yet migrated !!!!!
 
 Book shelf and device room management plugin for redmine.
 Books and devices are not categorized by projects (that means every project's ezlibrarian page will display the same book/device list)
-ONLY compatible with Redmine 0.8.3 or last devel.
+ONLY compatible with Redmine >= 2.x.y or last devel.
 
 === Feature
 1. Designed for using in company's book shelf and device room management.
@@ -27,6 +29,9 @@ Installed plugins are listed on 'Admin -> Plugin' screen.
 
 == Changelog
 
+version 0.2.0 devel
+1. Migrate from Rails 2 to Rails 3 for Redmine2 compatibility (Viewing only atm)
+
 version 0.1.5
 1. Send notify email on create and holder change.
 2. Send statement email to holders.
@@ -45,5 +50,9 @@ version 0.0.2:
 
 === Contact info
 
+Rails 3 Migration
+Email    -> redeamer@gmx.net
+
+Original Author:
 Homepage -> http://ezwork.techcon.thtf.com.cn/projects/ezwork powered by redmine
 Email    -> zouchaoqun@gmail.com
