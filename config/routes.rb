@@ -9,6 +9,8 @@ match '/treasures/edit_device', :to => "treasures#edit_device"
 
 match '/treasures/:id/add_review', :to => "treasures#add_review"
 
+match '/treasures/:project_id', :controller => 'treasures', :action => 'show_statement'
+
 match '/treasures/:id', :controller => 'treasures', :action => 'show_book'
 match '/treasures/:id', :controller => 'treasures', :action => 'show_device'
 match '/treasures', :controller => 'treasures', :action => 'show_holder_change_histories'
