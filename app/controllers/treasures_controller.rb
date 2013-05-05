@@ -151,7 +151,7 @@ class TreasuresController < ApplicationController
 
   end
 
-  private
+private
   def find_project
     @users=User.find(:all,:conditions=>["status = ?", User::STATUS_ACTIVE])
   rescue ActiveRecord::RecordNotFound
@@ -191,6 +191,4 @@ class TreasuresController < ApplicationController
       render_404
     end
   end
-
-
 end

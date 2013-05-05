@@ -1,3 +1,8 @@
+<div class="contextual"><form>
+<label for="search_devices"><%=l(:label_search)%>:</label>
+<input type="text" id="search_devices" name="search"/>
+<div id="autocomplete_choices" class="autocomplete"></div>
+</form></div>
 <h2><%=l(:label_device_new)%></h2>
 
 <% labelled_tabular_form_for :device, @device, :html => {:id => 'device-form'} do |f| %>
