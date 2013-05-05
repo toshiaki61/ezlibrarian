@@ -1,6 +1,6 @@
 <h2><%= l(:label_book_edit) %></h2>
 <% labelled_tabular_form_for :book, @book,
-                             :url => {:id => @book, :project_id => @project},
+                             :url => {:id => @book},
                              :html => {:id => 'book-form'} do |f| %>
     <%= error_messages_for 'book' %>
     <div class="box">

@@ -64,7 +64,7 @@ class TreasuresController < ApplicationController
     @book = Book.new(params[:book])
     if request.post? && @book.save
       flash[:notice] = l(:notice_successful_create)
-      redirect_to :action => 'show_book', :id => @book, :project_id => @project
+      redirect_to :action => 'show_book', :id => @book
     end    
   end
 
@@ -72,7 +72,7 @@ class TreasuresController < ApplicationController
     @device = Device.new(params[:device])
     if request.post? && @device.save
       flash[:notice] = l(:notice_successful_create)
-      redirect_to :action => 'show_device', :id => @device, :project_id => @project
+      redirect_to :action => 'show_device', :id => @device
     end
   end
 
@@ -81,7 +81,7 @@ class TreasuresController < ApplicationController
       @book.attributes = params[:book]
       if @book.save
         flash[:notice] = l(:notice_successful_update)
-        redirect_to :action => 'show_book', :id => @book, :project_id => @project
+        redirect_to :action => 'show_book', :id => @book
       end      
     end
   rescue ActiveRecord::StaleObjectError
@@ -94,7 +94,7 @@ class TreasuresController < ApplicationController
       @device.attributes = params[:device]
       if @device.save
         flash[:notice] = l(:notice_successful_update)
-        redirect_to :action => 'show_device', :id => @device, :project_id => @project
+        redirect_to :action => 'show_device', :id => @device
       end
     end
   rescue ActiveRecord::StaleObjectError
@@ -112,12 +112,12 @@ class TreasuresController < ApplicationController
 
   def destroy_book
     @book.destroy
-    redirect_to :action => 'index', :project_id => @project    
+    redirect_to :action => 'index'
   end
 
   def destroy_device
     @device.destroy
-    redirect_to :action => 'index_of_devices', :project_id => @project
+    redirect_to :action => 'index_of_devices'
   end
 
   def add_review
@@ -126,7 +126,7 @@ class TreasuresController < ApplicationController
     @review.treasure = @treasure
     if request.post?
       @review.save
-      redirect_to :action => @show_action, :id => params[:id], :project_id => @project
+      redirect_to :action => @show_action, :id => params[:id]
     end
   end
 
@@ -147,14 +147,19 @@ class TreasuresController < ApplicationController
     @list.each{|id| LibMailer.deliver_send_statement_each(id)}
     
     flash[:notice]=l(:text_send_successful)
-    redirect_to :action => 'show_statement', :project_id => @project
+    redirect_to :action => 'show_statement'
 
   end
+
   private
   def find_project
-    @project = Project.find(1)
+    @users=User.find(:all,:conditions=>["status = ?", User::STATUS_ACTIVE])
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def authorize
+    User.current.logged?
   end
   
   def find_book

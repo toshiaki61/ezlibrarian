@@ -1,7 +1,7 @@
 <div class="contextual">
-<%= link_to_if_authorized(l(:label_book_new), {:controller => 'treasures', :action => 'new_book', :project_id => @project}, :class => 'icon icon-add') %>
-<%= link_to_if_authorized(l(:button_update), {:controller => 'treasures', :action => 'edit_book', :id => @book, :project_id => @project}, :class => 'icon icon-edit', :accesskey => accesskey(:edit)) %>
-<%= link_to_if_authorized l(:button_delete), {:controller => 'treasures', :action => 'destroy_book', :id => @book, :project_id => @project}, :confirm => l(:text_are_you_sure), :method => :post, :class => 'icon icon-del' %>
+<%= link_to_if_authorized(l(:label_book_new), {:controller => 'treasures', :action => 'new_book'}, :class => 'icon icon-add') %>
+<%= link_to_if_authorized(l(:button_update), {:controller => 'treasures', :action => 'edit_book', :id => @book}, :class => 'icon icon-edit', :accesskey => accesskey(:edit)) %>
+<%= link_to_if_authorized l(:button_delete), {:controller => 'treasures', :action => 'destroy_book', :id => @book}, :confirm => l(:text_are_you_sure), :method => :post, :class => 'icon icon-del' %>
 </div>
 
 <h2><%= "#{l(:label_library)} : #{@book.title}" %></h2>
@@ -19,7 +19,7 @@
     <td style="width:15%"><b><%=l(:field_created_on)%>:</b></td>
     <td style="width:35%"><%= @book.created_on.strftime('%Y-%m-%d') %></td>
     <td style="width:15%"><b><%=l(:field_holder_change_histories_count)%>:</b></td>
-    <td style="width:35%"><%= @book.holder_change_histories_count > 1 ? "#{@book.holder_change_histories_count - 1} (" + link_to(l(:button_view), :action => 'show_holder_change_histories', :id => @book, :type => 'book', :project_id => @project) + ')' : 0 %></td>
+    <td style="width:35%"><%= @book.holder_change_histories_count > 1 ? "#{@book.holder_change_histories_count - 1} (" + link_to(l(:button_view), :action => 'show_holder_change_histories', :id => @book, :type => 'book') + ')' : 0 %></td>
 </tr>
 <tr>
     <td style="width:15%"><b><%=l(:field_author)%>:</b></td>
@@ -68,7 +68,7 @@
 
 <div class="contextual">
 <%= link_to_if_authorized l(:label_add_review), 
-                          {:action => 'add_review', :id => @book, :type => 'book', :project_id => @project},
+                          {:action => 'add_review', :id => @book, :type => 'book'},
                           :class => 'icon icon-comment',
                           :onclick => 'Element.show("add-review"); return false;'  %>
 </div>
@@ -76,7 +76,7 @@
 <% if authorize_for('treasures', 'add_review') %>
   <div id="add-review" style="display:none;">
     <h3><%= l(:label_add_review) %></h3>
-    <% form_for :review, :url => {:controller => 'treasures', :action => 'add_review', :id => @book, :type => 'book', :project_id => @project} do |f| %>
+    <% form_for :review, :url => {:controller => 'treasures', :action => 'add_review', :id => @book, :type => 'book'} do |f| %>
       <%= error_messages_for 'review' %>
       <div class="box">
       <p><%= f.text_area :review, :cols => 80, :rows => 10, :class => 'wiki-edit', :id => 'review_content' %></p>

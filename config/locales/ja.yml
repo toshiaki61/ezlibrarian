@@ -1,8 +1,8 @@
 ja:
 
-  label_booty_bay: 書籍管理
+  label_booty_bay: 資材
 
-  label_library: 書庫
+  label_library: 書籍
   label_book_new: 追加
   label_book_edit: 更新
 
@@ -11,7 +11,7 @@ ja:
   label_device_edit: 更新
 
   label_holder_change_histories: "貸出履歴 < {{value}} >" 
-  label_holder_change_count: "{{age}}　からの貸出回数 {{count}}"
+  label_holder_change_count: "{{age}} からの貸出回数 {{count}}"
   label_review: レビュー
   label_add_review: レビューを書く
   label_nobody: 未貸出
@@ -40,7 +40,7 @@ ja:
   field_updater: 更新者
   field_reviews_count: レビュー数
   field_holder_change_histories_count: 貸出回数
-  field_got_time: Got time
+  field_got_time: 日付
 
   text_statement_count: メール送信数
   text_statement_receiver: "送信情報詳細 {{name}}"
@@ -57,14 +57,14 @@ ja:
   text_book_created: 書籍を作成しました。詳細は下記を参照してください。
   text_device_created: 機器を作成しました。詳細は下記を参照してください。
 
-  text_statement_subject: Holding statement
+  text_statement_subject: 貸出通知
   text_send_hello: こんにちは
   text_send_books: 書籍
-  text_send_datetime: Got on
+  text_send_datetime: 貸出日
   text_send_devices: 機器
-  text_statement_hello: Here is the detail as follow
+  text_statement_hello: 詳細は以下の通りです  
   
-  permission_view_treasures: View treasures
-  permission_manage_treasures: Manage treasures
+  permission_view_treasures: 資材の閲覧 
+  permission_manage_treasures: 資材の管理
 
-  project_module_ezlibrarian: 蔵書管理
+  project_module_ezlibrarian: 資材

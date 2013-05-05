@@ -1,7 +1,6 @@
 <div class="contextual">
-<%= link_to_if_authorized @type_is_book ? l(:label_book_new) : l(:label_device_new),
-                          {:controller => 'treasures', :action => @type_is_book ? 'new_book' : 'new_device',
-                            :project_id => @project}, :class => 'icon icon-add' %>
+<%= link_to @type_is_book ? l(:label_book_new) : l(:label_device_new),
+                          {:controller => 'treasures', :action => @type_is_book ? 'new_book' : 'new_device'}, :class => 'icon icon-add' %>
 </div>
 
 <h2><%= @type_is_book ? l(:label_library) : l(:label_device_room) %></h2>
