@@ -10,8 +10,8 @@ ja:
   label_device_new: 追加
   label_device_edit: 更新
 
-  label_holder_change_histories: 貸出履歴 < {{value}} >
-  label_holder_change_count: {{age}}　からの貸出回数 {{count}}
+  label_holder_change_histories: "貸出履歴 < {{value}} >" 
+  label_holder_change_count: "{{age}}　からの貸出回数 {{count}}"
   label_review: レビュー
   label_add_review: レビューを書く
   label_nobody: 未貸出
@@ -43,7 +43,7 @@ ja:
   field_got_time: Got time
 
   text_statement_count: メール送信数
-  text_statement_receiver: 送信情報詳細 {{name}}
+  text_statement_receiver: "送信情報詳細 {{name}}"
   text_statement_submit: 送信
   text_send_successful: メール送信完了
   text_title_statement: 以下の内容で送信します。
@@ -52,8 +52,8 @@ ja:
   text_holder_change_notice: 貸出先が変更されました。詳細は下記を参照してください。
   text_book_created_subject: 書籍貸出通知
   text_device_created_subject: 機器貸出通知
-  text_book_holder_change_subject: 書籍貸出先変更通知 <{{name}}>
-  text_device_holder_change_subject: 機器貸出先変更通知 <{{name}}>
+  text_book_holder_change_subject: "書籍貸出先変更通知 <{{name}}>"
+  text_device_holder_change_subject: "機器貸出先変更通知 <{{name}}>"
   text_book_created: 書籍を作成しました。詳細は下記を参照してください。
   text_device_created: 機器を作成しました。詳細は下記を参照してください。
 
