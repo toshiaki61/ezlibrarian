@@ -9,52 +9,56 @@
 <div class="book" >
 
 <table width="100%">
+<col width="10%"/>
+<col/>
+<col width="10%"/>
+<col/>
+<col/>
 <tr>
-    <td style="width:15%"><b><%=l(:field_book_id)%>:</b></td>
-    <td style="width:35%"><%= @book.id %></td>
-    <td style="width:15%"><b><%=l(:field_holder)%>:</b></td>
-    <td style="width:35%"><%= @book.holder %></td>
-</tr>
-<tr>
-    <td style="width:15%"><b><%=l(:field_created_on)%>:</b></td>
-    <td style="width:35%"><%= @book.created_on.strftime('%Y-%m-%d') %></td>
-    <td style="width:15%"><b><%=l(:field_holder_change_histories_count)%>:</b></td>
-    <td style="width:35%"><%= @book.holder_change_histories_count > 1 ? "#{@book.holder_change_histories_count - 1} (" + link_to(l(:button_view), :action => 'show_holder_change_histories', :id => @book, :type => 'book') + ')' : 0 %></td>
-</tr>
-<tr>
-    <td style="width:15%"><b><%=l(:field_author)%>:</b></td>
-    <td style="width:35%"><%= @book.author %></td>
-<% if @book.translator && @book.translator.length > 0 %>
-    <td style="width:15%"><b><%=l(:field_translator)%>:</b></td>
-    <td style="width:35%"><%= @book.translator %></td>
-<% end %>
-</tr>
-<tr>
-    <td style="width:15%"><b><%=l(:field_publisher)%>:</b></td>
-    <td style="width:35%"><%= @book.publisher %></td>
-    <td style="width:15%"><b><%=l(:field_published_on)%>:</b></td>
-    <td style="width:35%"><%= @book.published_on %></td>
-</tr>
-<tr>
-    <td style="width:15%"><b><%=l(:field_isbn)%>:</b></td>
-    <td style="width:35%"><%= @book.isbn %></td>
-    <td style="width:15%"><b><%=l(:field_pages)%>:</b></td>
-    <td style="width:35%"><%= @book.pages %></td>
-</tr>
-<tr>
-    <td style="width:15%"><b><%=l(:field_value)%></b></td>
-    <td style="width:35%"><%=number_to_currency(@book.value)%></td>
-<% if @book.original_title && @book.original_title.length > 0 %>
-    <td style="width:15%"><b><%=l(:field_original_title)%>:</b></td>
-    <td style="width:35%"><%= @book.original_title %></td>
-<% end %>
-</tr>
+    <td><b><%=l(:field_book_id)%>:</b></td>
+    <td><%= @book.id %></td>
+    <td><b><%=l(:field_holder)%>:</b></td>
+    <td><%= @book.holder %></td>
 <% if @book.intro_url && @book.intro_url.length > 0 %>
-<tr>
-    <td style="width:15%"><b><%=l(:field_intro_url)%>:</b></td>
-    <td colspan="3" style="width:85%"><%= link_to @book.intro_url, @book.intro_url, :popup => true %></td>
-</tr>
+    <td rowspan="6"><%= image_tag @book.intro_url, :alt => @book.title, :height => 160 %></td>
+<% else %>
+    <td rowspan="6">&nbsp;</td>
 <% end %>
+</tr>
+<tr>
+    <td><b><%=l(:field_created_on)%>:</b></td>
+    <td><%= @book.created_on.strftime('%Y-%m-%d') %></td>
+    <td><b><%=l(:field_holder_change_histories_count)%>:</b></td>
+    <td><%= @book.holder_change_histories_count > 1 ? "#{@book.holder_change_histories_count - 1} (" + link_to(l(:button_view), :action => 'show_holder_change_histories', :id => @book, :type => 'book') + ')' : 0 %></td>
+</tr>
+<tr>
+    <td><b><%=l(:field_book_author)%>:</b></td>
+    <td><%= @book.author %></td>
+<% if @book.translator && @book.translator.length > 0 %>
+    <td><b><%=l(:field_translator)%>:</b></td>
+    <td><%= @book.translator %></td>
+<% end %>
+</tr>
+<tr>
+    <td><b><%=l(:field_publisher)%>:</b></td>
+    <td><%= @book.publisher %></td>
+    <td><b><%=l(:field_published_on)%>:</b></td>
+    <td><%= @book.published_on %></td>
+</tr>
+<tr>
+    <td><b><%=l(:field_isbn)%>:</b></td>
+    <td><%= @book.isbn %></td>
+    <td><b><%=l(:field_pages)%>:</b></td>
+    <td><%= @book.pages %></td>
+</tr>
+<tr>
+    <td><b><%=l(:field_value)%></b></td>
+    <td><%=number_to_currency(@book.value)%></td>
+<% if @book.original_title && @book.original_title.length > 0 %>
+    <td><b><%=l(:field_original_title)%>:</b></td>
+    <td><%= @book.original_title %></td>
+<% end %>
+</tr>
 
 </table>
 
@@ -103,5 +107,5 @@
 <% html_title "#{l(:label_library)} : #{@book.title}" -%>
 
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag '/plugin_assets/redmine_ezlibrarian/stylesheets/ezlibrarian' %>
+<%= stylesheet_link_tag 'ezlibrarian', :plugin => 'redmine_ezlibrarian' %>
 <% end %>

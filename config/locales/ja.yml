@@ -35,7 +35,7 @@ ja:
   field_manufactured_on: 販売日
 
   field_value: 価格
-  field_intro_url: 紹介ページ
+  field_intro_url: url
   field_holder: 貸出先
   field_updater: 更新者
   field_reviews_count: レビュー数

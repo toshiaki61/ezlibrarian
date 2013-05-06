@@ -15,5 +15,8 @@
 <% content_for :sidebar do %>
     <%= render :partial => 'treasures/sidebar' %>
 <% end %>
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'list', :plugin => 'redmine_ezlibrarian' %>
+<% end %>
 
 <% html_title(l(:label_booty_bay)) -%>

@@ -15,12 +15,23 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+require 'asin'
+
 class TreasuresController < ApplicationController
   unloadable
 
   helper :sort
   include SortHelper
-  
+
+  include ASIN::Client
+  ASIN::Configuration.configure do |config|
+    config.secret = Setting.plugin_redmine_ezlibrarian['secret']
+    config.key = Setting.plugin_redmine_ezlibrarian['key']
+    config.associate_tag = Setting.plugin_redmine_ezlibrarian['associate_tag']
+    config.host = Setting.plugin_redmine_ezlibrarian['host']
+    config.version = Setting.plugin_redmine_ezlibrarian['version']
+  end
+
   layout 'base'  
   before_filter :find_project, :authorize
   before_filter :find_book, :only => [:show_book, :edit_book, :destroy_book]
@@ -40,8 +51,13 @@ class TreasuresController < ApplicationController
       :limit  =>  @pages.items_per_page,
       :offset =>  @pages.current.offset)
 
-
     render :template => 'treasures/index.html.erb', :layout => !request.xhr?
+  end
+
+  def amazon
+
+    items = search_keywords params[:query]
+    render :json => {'query'=>params[:query],'suggestions'=>items}
   end
 
   def index_of_devices
@@ -148,7 +164,6 @@ class TreasuresController < ApplicationController
     
     flash[:notice]=l(:text_send_successful)
     redirect_to :action => 'show_statement'
-
   end
 
 private

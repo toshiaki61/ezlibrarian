@@ -25,11 +25,18 @@ Redmine::Plugin.register :redmine_ezlibrarian do
   url 'http://ezwork.techcon.thtf.com.cn/projects/ezwork'
   author_url 'mailto:zouchaoqun@gmail.com'
   
-  project_module :ezlibrarian do
-    permission :view_treasures, {:treasures => [:index, :index_of_devices,:send_statement, :show_statement,:show_book, :show_device, :add_review, :show_holder_change_histories]}, :require => :member
-    permission :manage_treasures, {:treasures => [:new_book, :show_statement, :send_statement, :new_device, :edit_book, :edit_device, :destroy_book, :destroy_device]}, :require => :member
-  end
+  # project_module :ezlibrarian do
+  #   permission :view_treasures, {:treasures => [:index, :index_of_devices,:send_statement, :show_statement,:show_book, :show_device, :add_review, :show_holder_change_histories]}, :require => :member
+  #   permission :manage_treasures, {:treasures => [:new_book, :show_statement, :send_statement, :new_device, :edit_book, :edit_device, :destroy_book, :destroy_device]}, :require => :member
+  # end
 
   menu :top_menu, :treasures, { :controller => 'treasures', :action => 'index' }, :caption => :label_booty_bay
-
+  
+  settings :default => {
+    'secret'        => '',
+    'key'           => '',
+    'associate_tag' => '',
+    'host'          => 'webservices.amazon.com',
+    'version'       => '2011-08-01',
+  }, :partial => 'settings/search_settings'
 end

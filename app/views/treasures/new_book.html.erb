@@ -1,7 +1,6 @@
 <div class="contextual"><form>
 <label for="search_books"><%=l(:label_search)%>:</label>
-<input type="text" id="search_books" name="search"/>
-<div id="autocomplete_choices" class="autocomplete"></div>
+<input type="text" id="search_books" size="40" name="search"/>
 </form></div>
 <h2><%=l(:label_book_new)%></h2>
 
@@ -18,3 +17,9 @@
 <% end %>
 
 <% html_title(l(:label_library)) -%>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'search', :plugin => 'redmine_ezlibrarian' %>
+<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js','https://raw.github.com/devbridge/jQuery-Autocomplete/master/dist/jquery.autocomplete.min.js' %>
+<%= javascript_include_tag 'book_converter', 'search', :plugin => 'redmine_ezlibrarian' %>
+<% end %>

@@ -1,6 +1,6 @@
 <p><%= f.text_field :title, :label => :field_book_title, :size => 80, :required => true %></p>
 <p><%= f.text_field :original_title, :size => 80 %></p>
-<p><%= f.text_field :author, :size => 80, :required => true %></p>
+<p><%= f.text_field :author, :label => :field_book_author, :size => 80, :required => true %></p>
 <p><%= f.text_field :translator, :size => 80 %></p>
 <p><%= f.text_field :publisher, :size => 80, :required => true %></p>
 <p><%= f.text_field :published_on, :size => 10, :required => true %><%= calendar_for('book_published_on') %></p>
