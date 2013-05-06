@@ -11,7 +11,7 @@ ja:
   label_device_edit: 更新
 
   label_holder_change_histories: "貸出履歴 < {{value}} >" 
-  label_holder_change_count: "{{age}} からの貸出回数 {{count}}"
+  label_holder_change_count: "{{age}}前からの貸出回数:{{count}}回"
   label_review: レビュー
   label_add_review: レビューを書く
   label_nobody: 未貸出

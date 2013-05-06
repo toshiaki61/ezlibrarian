@@ -77,7 +77,7 @@
                           :onclick => 'Element.show("add-review"); return false;'  %>
 </div>
 
-<% if authorize_for('treasures', 'add_review') %>
+
   <div id="add-review" style="display:none;">
     <h3><%= l(:label_add_review) %></h3>
     <% form_for :review, :url => {:controller => 'treasures', :action => 'add_review', :id => @book, :type => 'book'} do |f| %>
@@ -90,7 +90,7 @@
       <%= link_to l(:button_cancel), "#", :onclick => 'Element.hide("add-review")' %></p>
     <% end %>
   </div>
-<% end %>
+
 
 <% if @reviews.any? %>
 <div id="review">

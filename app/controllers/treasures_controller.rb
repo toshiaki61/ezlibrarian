@@ -33,6 +33,7 @@ class TreasuresController < ApplicationController
   end
 
   layout 'base'  
+  before_filter :require_login
   before_filter :find_project, :authorize
   before_filter :find_book, :only => [:show_book, :edit_book, :destroy_book]
   before_filter :find_device, :only => [:show_device, :edit_device, :destroy_device]

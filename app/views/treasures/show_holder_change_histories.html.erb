@@ -6,7 +6,7 @@
   <tr>
     <th colspan="2"><%= l(:field_holder) %></th>
     <th><%= l(:field_got_time) %></th>
-	<th colspan="2"><%= l(:field_updater) %></th>
+    <th><%= l(:field_updater) %></th>
   </tr>
   <% for hch in @hchs -%>
     <tr>
@@ -23,15 +23,14 @@
       <% end %>
       <td class="time"><%= format_time(hch.created_on) %> </td>
 	    <% unless hch.updater.nil? %>
-          <td class="holder"><%= hch.updater %></td>
-        <% else %>
-          <td class="icon icon-nobody">&nbsp;</td>
-        <% end %>
-	  
+        <td class="holder"><%= hch.updater %></td>
+      <% else %>
+        <td class="icon icon-nobody">&nbsp;</td>
+      <% end %>
     </tr>
     <% if hch != @hchs.last %>
       <tr>
-        <td colspan="3" class="icon icon-down-arrow">&nbsp;</td>
+        <td colspan="4" class="icon icon-down-arrow">&nbsp;</td>
       </tr>
     <% end %>
   <% end %>
@@ -44,5 +43,5 @@
 <% html_title "#{l(:label_library)} : #{l(:label_holder_change_histories, :value => @treasure_name)}" -%>
 
 <% content_for :header_tags do %>
-    <%= stylesheet_link_tag '/plugin_assets/redmine_ezlibrarian/stylesheets/ezlibrarian' %>
+    <%= stylesheet_link_tag 'ezlibrarian', :plugin => 'redmine_ezlibrarian' %>
 <% end %>
