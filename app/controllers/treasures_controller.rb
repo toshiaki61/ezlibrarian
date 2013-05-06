@@ -35,7 +35,7 @@ class TreasuresController < ApplicationController
   layout 'base'  
   before_filter :require_login
   before_filter :find_project, :authorize
-  before_filter :find_book, :only => [:show_book, :edit_book, :destroy_book]
+  before_filter :find_book, :only => [:show_book, :edit_book, :destroy_book, :return_book, :borrow_book]
   before_filter :find_device, :only => [:show_device, :edit_device, :destroy_device]
   before_filter :find_treasure, :only => [:add_review, :show_holder_change_histories]
   
@@ -56,9 +56,23 @@ class TreasuresController < ApplicationController
   end
 
   def amazon
-
     items = search_keywords params[:query]
     render :json => {'query'=>params[:query],'suggestions'=>items}
+  end
+
+  def return_book
+    return_to = Setting.plugin_redmine_ezlibrarian['return_to']
+    @book.holder_id = return_to
+    @book.updater_id = return_to
+    @book.save
+    redirect_to :action => 'index'
+  end
+
+  def borrow_book
+    @book.holder_id = User.current.id
+    @book.updater_id = User.current.id
+    @book.save
+    redirect_to :action => 'index'
   end
 
   def index_of_devices

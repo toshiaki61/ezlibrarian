@@ -33,10 +33,11 @@ Redmine::Plugin.register :redmine_ezlibrarian do
   menu :top_menu, :treasures, { :controller => 'treasures', :action => 'index' }, :caption => :label_booty_bay
   
   settings :default => {
-    'secret'        => '',
-    'key'           => '',
+    'secret' => '',
+    'key' => '',
     'associate_tag' => '',
-    'host'          => 'webservices.amazon.com',
-    'version'       => '2011-08-01',
+    'host' => 'webservices.amazon.com',
+    'version' => '2011-08-01',
+    'return_to' => '1',
   }, :partial => 'settings/search_settings'
 end

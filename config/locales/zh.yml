@@ -56,6 +56,8 @@ zh:
   text_device_holder_change_subject: 设备《{{name}}》持有人变更通知
   text_book_created: 图书创建成功，相关信息如下
   text_device_created: 设备创建成功，相关信息如下
+  text_borrow: Borrow
+  text_return: Return
 
   text_statement_subject: 图书及设备持有情况报告
   text_send_hello: 您好

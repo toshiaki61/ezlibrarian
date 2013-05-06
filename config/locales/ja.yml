@@ -56,6 +56,8 @@ ja:
   text_device_holder_change_subject: "機器貸出先変更通知 <{{name}}>"
   text_book_created: 書籍を作成しました。詳細は下記を参照してください。
   text_device_created: 機器を作成しました。詳細は下記を参照してください。
+  text_borrow: 借りる
+  text_return: 返す
 
   text_statement_subject: 貸出通知
   text_send_hello: こんにちは

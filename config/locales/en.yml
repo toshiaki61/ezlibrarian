@@ -56,6 +56,8 @@ en:
   text_device_holder_change_subject: Holder of Devcie <{{name}}> Change Notice
   text_book_created: Book created successfull, see details below
   text_device_created: Device created successfull, see details below
+  text_borrow: Borrow
+  text_return: Return
 
   text_statement_subject: Holding statement
   text_send_hello: Hello

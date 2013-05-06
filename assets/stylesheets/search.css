@@ -1,0 +1,30 @@
+.autocomplete-suggestions { 
+  border: 1px solid #999;
+  background: #FFF;
+  overflow: auto;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.15);
+  max-width: 300px;
+}
+.autocomplete-suggestion {
+  padding: 2px 5px;
+  overflow: hidden;
+  cursor: pointer;
+  height: 35px;
+}
+.autocomplete-suggestion:nth-child(even) {
+  background-color: #f4f4f4; 
+}
+.autocomplete-suggestion img {
+  margin-right: 3px;
+  vertical-align: top;
+  float: left;
+  border: 1px solid #999;
+}
+.autocomplete-selected {
+  color: #03739C;
+}
+.autocomplete-suggestions strong {
+  font-weight: normal;
+  color: #3399FF;
+}
