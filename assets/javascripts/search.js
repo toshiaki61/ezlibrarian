@@ -1,4 +1,3 @@
-jQuery.noConflict();
 (function($) {
   $(function() {
     var $search = $('#search_books,#search_devices'),
@@ -20,7 +19,12 @@ jQuery.noConflict();
         var formattedResult = $.Autocomplete.formatResult(suggestion, currentValue);
         var data = suggestion.data;
         if (data.ImageSets && data.ImageSets.ImageSet) {
-          formattedResult = '<img src="' + ArrayUtil.first(data.ImageSets.ImageSet).SwatchImage.URL + '" height="30"/>' + formattedResult;
+          var imageSet = ArrayUtil.first(data.ImageSets.ImageSet);
+          if (imageSet && imageSet.SwatchImage) {
+            formattedResult = '<img src="' + imageSet.SwatchImage.URL + '" height="30"/>' + formattedResult;
+          } else {
+            console.log(imageSet);
+          }
         }
         return formattedResult;
       },

@@ -48,9 +48,9 @@ var BookConverter = {
   'book_content': function(data) {
     var content = '';
     if (data.DetailPageURL) {
-      content += '"detail":'
+      content += '[detail]('
       content += data.DetailPageURL;
-      content += '\n';
+      content += ')\n';
     }
     if (data.EditorialReviews && data.EditorialReviews.EditorialReview) {
       content += ArrayUtil.first(data.EditorialReviews.EditorialReview).Content;
@@ -71,6 +71,6 @@ var ArrayUtil = {
     return data.replace(/\s+/g, '');
   },
   first: function(data) {
-      return jQuery.isArray(data) ? data.first() : data;
+      return jQuery.isArray(data) ? jQuery(data).first() : data;
   }
 };

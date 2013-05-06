@@ -43,7 +43,7 @@ ja:
   field_got_time: 日付
 
   text_statement_count: メール送信数
-  text_statement_receiver: "送信情報詳細 {{name}}"
+  text_statement_receiver: "送信情報詳細 {{name}} "
   text_statement_submit: 送信
   text_send_successful: メール送信完了
   text_title_statement: 以下の内容で送信します。

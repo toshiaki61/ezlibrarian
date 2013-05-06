@@ -1,9 +1,9 @@
 <h2><%= l(:label_device_edit) %></h2>
-<%= labelled_tabular_form_for :device, @device,
+<%= labelled_form_for :device, @device,
                              :url => {:id => @device},
                              :html => {:id => 'device-form'} do |f| %>
     <%= error_messages_for 'device' %>
-    <div class="box">
+    <div class="box tabular">
     <%= render :partial => 'treasures/device_form', :locals => {:f => f} %>
     </div>
     <%= submit_tag l(:button_update) %>

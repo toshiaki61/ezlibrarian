@@ -4,9 +4,9 @@
 </form></div>
 <h2><%=l(:label_book_new)%></h2>
 
-<%= labelled_form_for :book, @book, :html => {:id => 'book-form'} do |f| %>
+<%= labelled_form_for :book, @book, :url => '/treasures/new_book', :html => {:id => 'book-form'} do |f| %>
     <%= error_messages_for 'book' %>
-    <div class="box">
+    <div class="box tabular">
     <%= render :partial => 'treasures/book_form', :locals => {:f => f} %>
     </div>
     <%= submit_tag l(:button_create) %>
@@ -20,6 +20,6 @@
 
 <% content_for :header_tags do %>
 <%= stylesheet_link_tag 'search', :plugin => 'redmine_ezlibrarian' %>
-<%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js','https://raw.github.com/devbridge/jQuery-Autocomplete/master/dist/jquery.autocomplete.min.js' %>
+<%= javascript_include_tag 'https://raw.github.com/devbridge/jQuery-Autocomplete/master/dist/jquery.autocomplete.min.js' %>
 <%= javascript_include_tag 'book_converter', 'search', :plugin => 'redmine_ezlibrarian' %>
 <% end %>
