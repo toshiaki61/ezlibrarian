@@ -13,7 +13,12 @@
 <% for book in treasures -%>
   <tr class="<%= cycle("odd", "even") %>">
     <td><%= book.id %></td>
-    <td><%= link_to image_tag(book.intro_url.sub(/SL(\d+)/, 'SL30'), :height => 30, :alt => book.title), :action => 'show_book', :id => book %><%= link_to book.title, :action => 'show_book', :id => book %></td>
+    <td>
+  <% if /jpg$/ =~ book.intro_url then %>
+      <%= link_to image_tag(book.intro_url.sub(/SL(\d+)/, 'SL30'), :height => 30, :alt => book.title), :action => 'show_book', :id => book %>
+  <% end %>
+      <%= link_to book.title, :action => 'show_book', :id => book %>
+    </td>
     <td><%= book.author %></td>
     <td><%= book.publisher %></td>
     <td><%= book.published_on %></td>
