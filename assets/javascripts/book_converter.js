@@ -45,12 +45,11 @@ var BookConverter = {
     }
     return '';
   },
-  'book_content': function(data) {
+  'book_content': function(data, formatting) {
     var content = '';
     if (data.DetailPageURL) {
-      content += '[detail]('
-      content += data.DetailPageURL;
-      content += ')\n';
+      content += WikiUtil.detail(data.DetailPageURL, formatting);
+      content += '\n';
     }
     if (data.EditorialReviews && data.EditorialReviews.EditorialReview) {
       content += ArrayUtil.first(data.EditorialReviews.EditorialReview).Content;
@@ -72,5 +71,20 @@ var ArrayUtil = {
   },
   first: function(data) {
       return jQuery.isArray(data) ? jQuery(data).first() : data;
+  }
+};
+
+var WikiUtil = {
+  detail: function(data, formatting) {
+    if (!data) {
+      return '';
+    }
+    if (formatting === 'textile') {
+      return '"detail":' + data;
+    }
+    if (formatting === 'markdown') {
+      return '[detail](' + data + ')';
+    }
+    return data;
   }
 };

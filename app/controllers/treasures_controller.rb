@@ -46,12 +46,13 @@ class TreasuresController < ApplicationController
     @type = 'book'
     @type_is_book = true
     @partial = 'treasures/list_book'
-    @count = Book.count
+    @count = Book.count(:conditions=>['title LIKE ?', "%#{params[:title]}%"])
     @pages = Paginator.new self, @count, per_page_option, params['page']
-    @treasures = Book.find(:all, :order => sort_clause,
+    @treasures = Book.find(:all,
+      :conditions=>['title LIKE ?', "%#{params[:title]}%"],
+      :order => sort_clause,
       :limit  =>  @pages.items_per_page,
       :offset =>  @pages.current.offset)
-
     render :template => 'treasures/index.html.erb', :layout => !request.xhr?
   end
 
@@ -108,7 +109,7 @@ class TreasuresController < ApplicationController
   end
 
   def edit_book
-    if request.post?
+    if request.post? || request.put?
       @book.attributes = params[:book]
       if @book.save
         flash[:notice] = l(:notice_successful_update)

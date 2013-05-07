@@ -15,9 +15,9 @@ match '/treasures/show_statement', :controller => 'treasures', :action => 'show_
 match '/treasures/send_statement', :controller => 'treasures', :action => 'send_statement', :list => [1]
 
 match '/treasures/:id', :controller => 'treasures', :action => 'show_book'
-match '/treasures/:id', :controller => 'treasures', :action => 'show_device'
-match '/treasures', :controller => 'treasures', :action => 'show_holder_change_histories'
-match '/treasures', :controller => 'treasures', :action => 'destroy_book'
-match '/treasures', :controller => 'treasures', :action => 'destroy_device'
+match '/treasures/show_device/:id', :controller => 'treasures', :action => 'show_device'
+match '/treasures/show_holder_change_histories', :controller => 'treasures', :action => 'show_holder_change_histories'
+match '/treasures/destroy_book', :controller => 'treasures', :action => 'destroy_book'
+match '/treasures/destroy_device', :controller => 'treasures', :action => 'destroy_device'
 
 #match '/treasures/:id' => 'treasures#show'

@@ -5,7 +5,7 @@
 <p><%= f.text_field :publisher, :size => 80, :required => true %></p>
 <p><%= f.text_field :published_on, :size => 10, :required => true %><%= calendar_for('book_published_on') %></p>
 <p><%= f.text_field :value, :size => 10, :required => true %><%= l(:'number.currency.format.unit') %></p>
-<p><%= f.text_field :isbn, :size => 80, :required => true %></p>
+<p><%= f.text_field :isbn, :size => 40, :required => true %></p>
 <p><%= f.text_field :pages, :size => 80, :required => true %></p>
 <p><%= f.text_area :content,
                    :cols => 60,

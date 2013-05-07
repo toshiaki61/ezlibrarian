@@ -23,7 +23,7 @@
           if (imageSet && imageSet.SwatchImage) {
             formattedResult = '<img src="' + imageSet.SwatchImage.URL + '" height="30"/>' + formattedResult;
           } else {
-            console.log(imageSet);
+            //console.log(imageSet);
           }
         }
         return formattedResult;
@@ -40,8 +40,9 @@
       },
       onSelect: function (suggestion) {
         var data = suggestion.data;
-        $.each(BookConverter, function(key, val) {
-          $('#' + key).val(val(data));
+        var formatting = $search.data('wiki-formatting');
+        $.each(BookConverter, function(key, converter) {
+          $('#' + key).val(converter(data, formatting));
         });
       },
       transformResult: function(response) {
