@@ -1,0 +1,55 @@
+<h2><%= l(:label_holder_change_histories,
+  :value => @treasure_name) %></h2>
+
+<h3><%= l(:label_holder_change_count,
+  :age => content_tag(
+    'acronym', 
+    distance_of_time_in_words(Time.now, @hchs.first.created_on),
+    :title => format_time(@hchs.first.created_on)
+  ),
+  :count => @hchs.count - 1
+) %></h3>
+
+<table class="hch-list">
+  <tr>
+    <th colspan="2"><%= l(:field_holder) %></th>
+    <th><%= l(:field_got_time) %></th>
+    <th><%= l(:field_updater) %></th>
+  </tr>
+  <% for hch in @hchs -%>
+    <tr>
+      <% if hch.holder %>
+        <% if Setting.gravatar_enabled? %>
+          <td class="icon"><%= avatar(hch.holder, :size => 32) %></td>
+        <% else %>
+          <td class="icon icon-nobody">&nbsp;</td>
+        <% end %>
+        <td class="holder"><%= hch.holder %></td>
+      <% else %>
+        <td class="icon icon-nobody">&nbsp;</td>
+        <td class="holder"><%= l(:label_nobody) %></td>
+      <% end %>
+      <td class="time"><%= format_time(hch.created_on) %> </td>
+      <% unless hch.updater.nil? %>
+        <td class="holder"><%= hch.updater %></td>
+      <% else %>
+        <td class="icon icon-nobody">&nbsp;</td>
+      <% end %>
+    </tr>
+    <% if hch != @hchs.last %>
+      <tr>
+        <td colspan="4" class="icon icon-down-arrow">&nbsp;</td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'shared/sidebar' %>
+<% end %>
+
+<% html_title "#{l(:label_library)} : #{l(:label_holder_change_histories, :value => @treasure_name)}" -%>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'ezlibrarian', :plugin => 'redmine_ezlibrarian' %>
+<% end %>

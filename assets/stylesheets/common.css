@@ -1,0 +1,14 @@
+.theme-Gitmike #header,
+.theme-Gitmike #main-menu {
+  height: 0;
+}
+.theme-Gitmike #header {
+  min-height: 3em; 
+}
+.theme-Gitmike #main {
+  margin: 0 15px;
+}
+.statement-count {
+  text-align: right;
+  margin-right: 20px;  
+}

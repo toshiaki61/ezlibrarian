@@ -1,0 +1,24 @@
+<h2><%=l(:label_device_new)%></h2>
+
+<%= labelled_form_for :device, @device, 
+  :url => {
+    :controller => 'devices',
+    :action => 'create'
+  },
+  :html => {:id => 'device-form'} do |f| %>
+  <%= error_messages_for 'device' %>
+  <div class="box tabular">
+  <%= render :partial => 'form', :locals => {:f => f} %>
+  </div>
+  <%= submit_tag l(:button_create) %>
+<% end %>
+
+<% html_title(l(:label_device_room)) -%>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'shared/sidebar' %>
+<% end %>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'common', :plugin => 'redmine_ezlibrarian' %>
+<% end %>

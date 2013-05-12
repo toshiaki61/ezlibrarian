@@ -1,0 +1,150 @@
+<div class="contextual">
+<%= link_to(l(:label_book_new), {
+    :controller => 'books',
+    :action => 'new'
+  },
+  :class => 'icon icon-add') %>
+<%= link_to(l(:button_update), {
+    :controller => 'books',
+    :action => 'edit',
+    :id => @book
+  },
+  :class => 'icon icon-edit',
+  :accesskey => accesskey(:edit)) %>
+<%= link_to l(:button_delete), {
+    :controller => 'books',
+    :action => 'destroy',
+    :id => @book
+  },
+  :method => :delete,
+  :confirm => l(:text_are_you_sure),
+  :method => :post,
+  :class => 'icon icon-del' %>
+</div>
+
+<h2><%= "#{l(:label_library)} : #{@book.title}" %></h2>
+
+<div class="book" >
+
+<table width="100%">
+<col width="10%"/>
+<col/>
+<col width="10%"/>
+<col/>
+<col/>
+<tr>
+    <td><b><%=l(:field_book_id)%>:</b></td>
+    <td><%= @book.id %></td>
+    <td><b><%=l(:field_holder)%>:</b></td>
+    <td><%= @book.holder %></td>
+<% if @book.intro_url && @book.intro_url.length > 0 %>
+    <td rowspan="6"><%= image_tag @book.intro_url,
+      :alt => @book.title,
+      :height => 160 %></td>
+<% else %>
+    <td rowspan="6">&nbsp;</td>
+<% end %>
+</tr>
+<tr>
+    <td><b><%=l(:field_created_on)%>:</b></td>
+    <td><%= @book.created_on.strftime('%Y-%m-%d') %></td>
+    <td><b><%= l(:field_holder_change_histories_count) %>:</b></td>
+    <td>
+      <% if @book.holder_change_histories_count > 1 %>
+        <%= @book.holder_change_histories_count - 1 %>
+        (<%= link_to(l(:button_view),
+          :controller => 'histories',
+          :action => 'show',
+          :id => @book,
+          :type => 'book'
+        ) %>)
+      <% else %>
+        0
+      <% end %>
+    </td>
+</tr>
+<tr>
+    <td><b><%=l(:field_book_author)%>:</b></td>
+    <td><%= @book.author %></td>
+<% if @book.translator && @book.translator.length > 0 %>
+    <td><b><%=l(:field_translator)%>:</b></td>
+    <td><%= @book.translator %></td>
+<% end %>
+</tr>
+<tr>
+    <td><b><%=l(:field_publisher)%>:</b></td>
+    <td><%= @book.publisher %></td>
+    <td><b><%=l(:field_published_on)%>:</b></td>
+    <td><%= @book.published_on %></td>
+</tr>
+<tr>
+    <td><b><%=l(:field_isbn)%>:</b></td>
+    <td><%= @book.isbn %></td>
+    <td><b><%=l(:field_pages)%>:</b></td>
+    <td><%= @book.pages %></td>
+</tr>
+<tr>
+    <td><b><%=l(:field_value)%></b></td>
+    <td><%=number_to_currency(@book.value)%></td>
+<% if @book.original_title && @book.original_title.length > 0 %>
+    <td><b><%=l(:field_original_title)%>:</b></td>
+    <td><%= @book.original_title %></td>
+<% end %>
+</tr>
+
+</table>
+
+<hr />
+<p><strong><%=l(:field_content)%></strong></p>
+<div class="wiki">
+<%= textilizable @book, :content %>
+</div>
+
+</div>
+
+<div class="contextual">
+<%= link_to l(:label_add_review), '#', :class => 'icon icon-comment open-review' %>
+</div>
+
+<div id="add-review" class="hidden">
+  <h3><%= l(:label_add_review) %></h3>
+  <%= form_for :review, 
+    :url => {
+      :controller => 'reviews', 
+      :action => 'create', 
+      :id => @book, 
+      :type => 'book'
+    } do |f| %>
+    <%= error_messages_for 'review' %>
+    <div class="box">
+    <p><%= f.text_area :review,
+      :cols => 80,
+      :rows => 10,
+      :class => 'wiki-edit',
+      :id => 'review_content' %></p>
+    <%= wikitoolbar_for 'review_content' %>
+    </div>
+    <p><%= submit_tag l(:button_create) %>
+    <%= link_to l(:button_cancel), '#', :class => 'close-review' %></p>
+  <% end %>
+</div>
+
+
+<% if @reviews.any? %>
+<div id="review">
+  <%= content_tag('a', '', :name => 'reviews')%>
+  <h3><%= l(:label_review) %></h3>
+  <%= render :partial => 'shared/review', :locals => { :reviews => @reviews } %>
+</div>
+<% end %>
+
+<% html_title "#{l(:label_library)} : #{@book.title}" -%>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'shared/sidebar' %>
+<% end %>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'common', 'ezlibrarian', 
+  :plugin => 'redmine_ezlibrarian' %>
+<% end %>

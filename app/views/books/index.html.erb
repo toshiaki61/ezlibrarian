@@ -1,0 +1,22 @@
+<div class="contextual">
+<%= link_to l(:label_book_new), :new_book, :class => 'icon icon-add' %>
+</div>
+
+<h2><%= l(:label_library) %></h2>
+
+<% if @treasures.empty? %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+  <%= render :partial => 'list', :locals => {:treasures => @treasures} %>
+  <p class="pagination"><%= pagination_links_full @pages, @count %></p>
+<% end %>
+
+<% html_title(l(:label_booty_bay)) -%>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'shared/sidebar' %>
+<% end %>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'common', 'list', :plugin => 'redmine_ezlibrarian' %>
+<% end %>

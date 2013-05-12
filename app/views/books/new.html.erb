@@ -1,0 +1,31 @@
+<%= flash[:alert] %><%= flash[:notice] %>
+<div class="contextual"><form>
+<label for="search-books"><%=l(:label_search)%>:</label>
+<input type="text" id="search-books" size="40" name="search" data-url="<%= amazon_index_path() %>" data-wiki-formatting="<%= Setting.text_formatting %>" data-text-detail="<%= l(:label_details) %>"/>
+</form></div>
+<h2><%=l(:label_book_new)%></h2>
+
+<%= labelled_form_for :book, @book, 
+  :url => {
+    :controller => 'books',
+    :action => 'create'
+  },
+  :html => {:id => 'book-form'} do |f| %>
+  <%= error_messages_for 'book' %>
+  <div class="box tabular">
+  <%= render :partial => 'books/form', :locals => {:f => f} %>
+  </div>
+  <%= submit_tag l(:button_create) %>
+<% end %>
+
+<% html_title(l(:label_library)) -%>
+
+<% content_for :sidebar do %>
+<%= render :partial => 'shared/sidebar' %>
+<% end %>
+
+<% content_for :header_tags do %>
+<%= stylesheet_link_tag 'common', 'search', :plugin => 'redmine_ezlibrarian' %>
+<%= javascript_include_tag 'https://raw.github.com/devbridge/jQuery-Autocomplete/master/dist/jquery.autocomplete.min.js' %>
+<%= javascript_include_tag 'book_converter', 'search', :plugin => 'redmine_ezlibrarian' %>
+<% end %>
