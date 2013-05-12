@@ -1,6 +1,6 @@
 (function($) {
   $(function() {
-    var $search = $('#search_books,#search_devices'),
+    var $search = $('#search-books'),
       $loader = $('#ajax-indicator'),
       count = 0;
     $search.on('keypress', function(e) {
@@ -10,8 +10,13 @@
         e.preventDefault();
       }
     });
+    var context = {
+      url: $search.data('url'),
+      formatting: $search.data('wiki-formatting'),
+      detail: $search.data('text-detail')
+    }
     $search.autocomplete({
-      serviceUrl: '/treasures/amazon',
+      serviceUrl: context.url,
       minChars: 3,
       deferRequestBy: 500,
       dataType: 'json',
@@ -40,13 +45,16 @@
       },
       onSelect: function (suggestion) {
         var data = suggestion.data;
-        var formatting = $search.data('wiki-formatting');
         $.each(BookConverter, function(key, converter) {
-          $('#' + key).val(converter(data, formatting));
+          var $element = $('#' + key);
+          if (!$element.val()) {
+            $element.val(converter(data, context));
+          }
         });
       },
       transformResult: function(response) {
         response = typeof response === 'string' ? $.parseJSON(response) : response;
+        
         return {
           query: response.query,
           suggestions: $.map(response.suggestions, function(suggestion, index) {

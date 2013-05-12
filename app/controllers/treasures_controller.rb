@@ -35,8 +35,8 @@ class TreasuresController < ApplicationController
   layout 'base'  
   before_filter :require_login
   before_filter :find_project, :authorize
-  before_filter :find_book, :only => [:show_book, :edit_book, :destroy_book, :return_book, :borrow_book]
-  before_filter :find_device, :only => [:show_device, :edit_device, :destroy_device]
+  before_filter :find_book, :only => [:show_book, :edit_book, :return_book, :borrow_book]
+  before_filter :find_device, :only => [:show_device, :edit_device]
   before_filter :find_treasure, :only => [:add_review, :show_holder_change_histories]
   
   def index
@@ -46,14 +46,14 @@ class TreasuresController < ApplicationController
     @type = 'book'
     @type_is_book = true
     @partial = 'treasures/list_book'
-    @count = Book.count(:conditions=>['title LIKE ?', "%#{params[:title]}%"])
+    conditions = {:conditions=>['title LIKE ?', "%#{params[:title]}%"]}
+    @count = Book.count(conditions)
     @pages = Paginator.new self, @count, per_page_option, params['page']
     @treasures = Book.find(:all,
-      :conditions=>['title LIKE ?', "%#{params[:title]}%"],
+      conditions.merge(
       :order => sort_clause,
       :limit  =>  @pages.items_per_page,
-      :offset =>  @pages.current.offset)
-    render :template => 'treasures/index.html.erb', :layout => !request.xhr?
+      :offset =>  @pages.current.offset))
   end
 
   def amazon
@@ -89,7 +89,6 @@ class TreasuresController < ApplicationController
       :limit  =>  @pages.items_per_page,
       :offset =>  @pages.current.offset)
 
-    render :template => 'treasures/index.html.erb', :layout => !request.xhr?
   end
 
   def new_book
@@ -122,7 +121,7 @@ class TreasuresController < ApplicationController
   end
 
   def edit_device
-    if request.post?
+    if request.post? || request.put?
       @device.attributes = params[:device]
       if @device.save
         flash[:notice] = l(:notice_successful_update)
@@ -135,21 +134,19 @@ class TreasuresController < ApplicationController
   end
 
   def show_book
+    if request.post?
+      @book.destroy
+      redirect_to :action => 'index'
+    end
     @reviews = @book.reviews
   end
 
   def show_device
+    if request.post?
+      @device.destroy
+      redirect_to :action => 'index_of_devices'
+    end
     @reviews = @device.reviews
-  end
-
-  def destroy_book
-    @book.destroy
-    redirect_to :action => 'index'
-  end
-
-  def destroy_device
-    @device.destroy
-    redirect_to :action => 'index_of_devices'
   end
 
   def add_review
@@ -166,21 +163,7 @@ class TreasuresController < ApplicationController
     @hchs = @treasure.holder_change_histories
   end
   
-  def show_statement
-    list=Book.find(:all).collect{|b|b.holder_id} + Device.find(:all).collect{|d|d.holder_id}
-    @user_list = list.uniq
-	  render :template => 'treasures/show_statement.html.erb', :layout => !request.xhr?
-  end
 
-  def send_statement
-    @list=params[:list]
-	  @user=User.find(:all,:conditions=>["id in (?)",@list])
-    
-    @list.each{|id| LibMailer.deliver_send_statement_each(id)}
-    
-    flash[:notice]=l(:text_send_successful)
-    redirect_to :action => 'show_statement'
-  end
 
 private
   def find_project

@@ -1,23 +1,8 @@
-match '/treasures', :controller => 'treasures', :action => 'index'
-match '/treasures/index_of_devices', :controller => 'treasures', :action => 'index_of_devices'
-
-
-match '/treasures/amazon', :to => "treasures#amazon"
-match '/treasures/new_book', :to => "treasures#new_book"
-match '/treasures/new_device', :to => "treasures#new_device"
-
-match '/treasures/edit_book', :to => "treasures#edit_book"
-match '/treasures/edit_device', :to => "treasures#edit_device"
-
-match '/treasures/:id/add_review', :to => "treasures#add_review"
-
-match '/treasures/show_statement', :controller => 'treasures', :action => 'show_statement'
-match '/treasures/send_statement', :controller => 'treasures', :action => 'send_statement', :list => [1]
-
-match '/treasures/:id', :controller => 'treasures', :action => 'show_book'
-match '/treasures/show_device/:id', :controller => 'treasures', :action => 'show_device'
-match '/treasures/show_holder_change_histories', :controller => 'treasures', :action => 'show_holder_change_histories'
-match '/treasures/destroy_book', :controller => 'treasures', :action => 'destroy_book'
-match '/treasures/destroy_device', :controller => 'treasures', :action => 'destroy_device'
-
-#match '/treasures/:id' => 'treasures#show'
+resources :books, :path => 'treasure/books'
+match 'treasure/books/borrow/:id', :to => 'books#borrow'
+match 'treasure/books/return/:id', :to => 'books#return'
+resources :devices, :path => 'treasure/devices'
+resources :amazon, :path => 'treasure/amazon', :only => [:index]
+resources :reviews, :path => 'treasure/reviews', :only => [:create]
+resources :statements, :path => 'treasure/statements', :only => [:index, :create]
+resources :histories, :path => 'treasure/histories', :only => [:index]

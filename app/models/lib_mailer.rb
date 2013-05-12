@@ -24,7 +24,7 @@ class LibMailer < Mailer
     elsif hch.treasure_type=='Device'
       name=Device.find(hch.treasure_id).name
     else
-	    name="error"
+      name="error"
     end
     redmine_headers 'Type' => hch.treasure_type,
       'Name' => name
@@ -44,7 +44,7 @@ class LibMailer < Mailer
 
     body   :hch => hch,
       :last_id => last_id,
-			:name => name
+      :name => name
 
 
     content_type "multipart/alternative"
@@ -63,7 +63,7 @@ class LibMailer < Mailer
     elsif hch.treasure_type=='Device'
       name=Device.find(hch.treasure_id).name
     else
-	    name="error"
+      name="error"
     end
     redmine_headers 'Type' => hch.treasure_type,
       'Name' => name

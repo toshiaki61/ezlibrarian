@@ -45,10 +45,10 @@ var BookConverter = {
     }
     return '';
   },
-  'book_content': function(data, formatting) {
+  'book_content': function(data, context) {
     var content = '';
     if (data.DetailPageURL) {
-      content += WikiUtil.detail(data.DetailPageURL, formatting);
+      content += WikiUtil.detail(data.DetailPageURL, context);
       content += '\n';
     }
     if (data.EditorialReviews && data.EditorialReviews.EditorialReview) {
@@ -75,15 +75,16 @@ var ArrayUtil = {
 };
 
 var WikiUtil = {
-  detail: function(data, formatting) {
+  detail: function(data, context) {
     if (!data) {
       return '';
     }
-    if (formatting === 'textile') {
-      return '"detail":' + data;
+    var detail = context.detail;
+    if (context.formatting === 'textile') {
+      return '"' + detail + '":' + data;
     }
-    if (formatting === 'markdown') {
-      return '[detail](' + data + ')';
+    if (context.formatting === 'markdown') {
+      return '[' + detail + '](' + data + ')';
     }
     return data;
   }
