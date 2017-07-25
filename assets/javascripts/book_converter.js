@@ -28,8 +28,8 @@ var BookConverter = {
     return '';
   },
   'book_value': function(data) {
-    if (data.ItemAttributes && data.ItemAttributes.ListPrice.Amount) {
-      return data.ItemAttributes.ListPrice.Amount;
+    if (data.OfferSummary && data.OfferSummary.LowestNewPrice && data.OfferSummary.LowestNewPrice.Amount) {
+      return data.OfferSummary.LowestNewPrice.Amount;
     }
     return '';
   },
